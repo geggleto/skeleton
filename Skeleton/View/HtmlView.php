@@ -23,14 +23,16 @@ class HtmlView implements IView
 
     protected $twig;
 
+    protected $title;
     /**
      * HtmlView constructor.
      *
      * @param \Slim\Views\Twig $twig
      */
-    public function __construct (Twig $twig)
+    public function __construct (Twig $twig, $title = '')
     {
         $this->twig = $twig;
+        $this->title = $title;
     }
 
     /**
@@ -41,6 +43,8 @@ class HtmlView implements IView
      */
     public function render (Response $response, $template = "", array $data = [])
     {
+        $title = isset($data['title'])?$data['title']:"";
+        $data['title'] = $this->title . ' ' . $title;
         return $this->twig->render($response, $template, $data);
     }
 }

@@ -6,6 +6,8 @@
  * Time: 9:15 AM
  */
 
+use Skeleton\View\HtmlView;
+use Skeleton\View\JsonView;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 
@@ -13,7 +15,8 @@ return [
     "settings" => [
         'viewTemplatesDirectory' => "../templates",
         "session_name" => "VMS2",
-        "db" => ['dsn' => 'mysql://root@localhost/skeleton']
+        "db" => ['dsn' => 'mysql://root@localhost/skeleton'],
+        'title' => "Site Wide Title"
     ],
 
     'view' => function ($container) {
@@ -43,9 +46,9 @@ return [
         return new \Spot\Locator($cfg);
     },
     'html' => function ($container) {
-        return new \Skeleton\View\HtmlView($container['view']);
+        return new HtmlView($container['view'], $container['settings']['title']);
     },
     'json' => function ($container) {
-        return new \Skeleton\View\JsonView($container['view']);
+        return new JsonView($container['view']);
     }
 ];

@@ -25,7 +25,7 @@ $app->get('/', function (
     Response $response,
     $args) {
 
-    return $response->write("Ready To Go");
+    return $this->html->render($response, "index.twig", ["content" => "Ready To Go!"]);
 
 });
 
