@@ -45,6 +45,9 @@ class HtmlView implements IView
     {
         $title = isset($data['title'])?$data['title']:"";
         $data['title'] = $this->title . ' ' . $title;
-        return $this->twig->render($response, $template, $data);
+        //return $this->twig->render($response, $template, $data);
+        $response = $this->twig->render($response, $template, $data);
+
+        return $response;
     }
 }
