@@ -5,8 +5,8 @@ date_default_timezone_set('America/New_York');
 require '../vendor/autoload.php';
 
 //Import Objects for Routes
-use Slim\Http\Request;
-use Slim\Http\Response;
+use Skeleton\Controller\DefaultController;
+
 
 //Include App Config
 $container = include "../Skeleton/Config/app.config.php";
@@ -20,14 +20,7 @@ session_name($container['settings']['session_name']);
 session_start();
 
 //Default Route
-$app->get('/', function (
-    Request $request,
-    Response $response,
-    $args) {
-
-    return $this->html->render($response, "index.twig", ["content" => "Ready To Go!"]);
-
-});
+$app->get('/', DefaultController::class.":index");
 
 //Run App
 $app->run();

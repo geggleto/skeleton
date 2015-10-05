@@ -6,6 +6,7 @@
  * Time: 9:15 AM
  */
 
+use Skeleton\Controller\DefaultController;
 use Skeleton\View\HtmlView;
 use Skeleton\View\JsonView;
 use Slim\Views\Twig;
@@ -50,5 +51,8 @@ return [
     },
     'json' => function ($container) {
         return new JsonView($container['view']);
+    },
+    DefaultController::class => function ($container) {
+        return new DefaultController($container['html']);
     }
 ];
